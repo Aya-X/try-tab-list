@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const baseURL = `https://b3e1e9f6-150d-4710-9425-d75523c9d46a.mock.pstmn.io/movies`;
 
@@ -76,6 +76,7 @@ function App() {
       <Container>
         <TabButton
           type='button'
+          isBorder={genre === 'top'}
           onClick={() => {
             setGenre('top');
             topCount.handleClick();
@@ -85,6 +86,7 @@ function App() {
         </TabButton>
         <TabButton
           type='button'
+          isBorder={genre === 'fantasy'}
           onClick={() => {
             setGenre('fantasy');
             fantasyCount.handleClick();
@@ -94,6 +96,7 @@ function App() {
         </TabButton>
         <TabButton
           type='button'
+          isBorder={genre === 'horror'}
           onClick={() => {
             setGenre('horror');
             horrorCount.handleClick();
@@ -102,7 +105,11 @@ function App() {
           horror ({horrorCount.count})
         </TabButton>
 
-        <TabButton type='button' onClick={() => setGenre('drama')}>
+        <TabButton
+          type='button'
+          isBorder={genre === 'drama'}
+          onClick={() => setGenre('drama')}
+        >
           drama
         </TabButton>
 
@@ -131,4 +138,10 @@ const TabButton = styled.button`
   &:hover {
     border-bottom: 2px solid #52b5d1;
   }
+
+  ${({ isBorder }) =>
+    isBorder &&
+    css`
+      border-bottom: 2px solid #52b5d1;
+    `}
 `;
